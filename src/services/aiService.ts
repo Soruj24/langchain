@@ -1,9 +1,11 @@
-import { createAgent, initChatModel } from "langchain";
+import { createAgent, initChatModel, tool } from "langchain";
+import { getWeather } from "../tools/getWeather.js";
 
 const model = await initChatModel("google-genai:gemini-2.5-flash-lite");
+
 const agent = createAgent({
   model,
-  tools: [],
+  tools: [getWeather],
 });
 
 export async function ask(message: string): Promise<string> {
