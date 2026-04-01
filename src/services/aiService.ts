@@ -3,8 +3,12 @@ import { getWeather } from "../tools/getWeather.js";
 
 const model = await initChatModel("google-genai:gemini-2.5-flash-lite");
 
+const systemPrompt =
+  "You are a helpful assistant that can answer questions about the weather.";
+
 const agent = createAgent({
   model,
+  systemPrompt,
   tools: [getWeather],
 });
 
